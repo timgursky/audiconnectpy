@@ -78,6 +78,8 @@ class AudiConnect:
         f_vehicles["userVehicles"] = [v for v in u_vehicles if v.get("devicePlatform") != "OFFLINE"]
         obj_vehicles = Vehicles.from_dict(f_vehicles)
 
+        _LOGGER.debug("Filtered out offline vehicles (from %s to %s)", len(u_vehicles), len(f_vehicles.get("userVehicles")))
+
         self.vehicles = obj_vehicles.user_vehicles
         for vehicle in self.vehicles:
             # Add attributes to vehicle
