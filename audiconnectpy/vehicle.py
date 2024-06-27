@@ -53,6 +53,9 @@ class Vehicle(DataClassDictMixin):  # type: ignore
     vin: str
     csid: str
     nickname: str | None = None
+    device_platform: str | None = field(
+        metadata=field_options(alias="devicePlatform"), default=None
+    )
     last_access: datetime | None = None
     uris: dict[str, Any] = field(init=False)
     fill_region: Any = field(init=False)

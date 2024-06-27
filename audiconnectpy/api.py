@@ -73,7 +73,11 @@ class AudiConnect:
                 "Error to get information vehicles ({error})"
             ) from error
 
-        obj_vehicles = Vehicles.from_dict(vehicles_response.get("data", []))
+        f_vehicles = dict()
+        u_vehicles = vehicles_response.get("data", []).get("userVehicles")
+        f_vehicles["userVehicles"] = [v for v in u_vehicles if v.get("devicePlatform") != "OFFLINE"]
+        obj_vehicles = Vehicles.from_dict(f_vehicles)
+
         self.vehicles = obj_vehicles.user_vehicles
         for vehicle in self.vehicles:
             # Add attributes to vehicle

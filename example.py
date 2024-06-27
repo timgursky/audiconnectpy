@@ -24,7 +24,7 @@ with open("./secrets.yaml", encoding="UTF-8") as file:
 
 USERNAME = secrets["USERNAME"]
 PASSWORD = secrets["PASSWORD"]
-COUNTRY = "FR"
+COUNTRY = secrets["REGION"]
 SPIN = secrets["SPIN"]
 
 
@@ -40,6 +40,7 @@ async def main() -> None:
             try:
                 for vehicle in api.vehicles:
                     logger.info(vehicle.vin)
+                    logger.info(vehicle.device_platform)
                     logger.info(vehicle.infos)
                     logger.info(vehicle.fuel_status)
                     logger.info(vehicle.last_access)
